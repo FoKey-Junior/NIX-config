@@ -1,5 +1,7 @@
 # 🧊 NixOS Configuration
 
+![Background](https://github.com/FoKey-Junior/NIX-config/blob/main/background.png?raw=true)
+
 Мой персональный конфиг **NixOS**, ориентированный на разработку, повседневное использование и немного гейминга
 
 Система собиралась как **стабильный, но максимально свежий workstation** с KDE Plasma 6, NVIDIA и современным стеком инструментов для C++
@@ -26,9 +28,9 @@
 - KDE Plasma 6 (X11)
 - Hyprland включён как опция
 - NVIDIA:
-    - modesetting
-    - power management
-    - proprietary driver (`open = false`)
+  - modesetting
+  - power management
+  - proprietary driver (`open = false`)
 
 ---
 
@@ -115,5 +117,5 @@
 
 - `allowUnfree = true`
 - Experimental features:
-    - `nix-command`
-    - `flakes`
+  - `nix-command`
+  - `flakes`
