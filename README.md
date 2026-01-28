@@ -67,11 +67,15 @@
 - rocksdb
 - crow
 
-### Инструменты
+### IDE и редакторы
 
 - CLion
 - Qt Creator
 - VS Code / Cursor
+- Arduino IDE
+
+### Инструменты и языки
+
 - Git
 - Python 3.15
 - Node.js 24
@@ -104,12 +108,11 @@
 
 ---
 
-## 🌐 Сеть и прочее
+## 🌐 Сеть и сервисы
 
 - SSH Agent
 - Printing (CUPS)
 - Ngrok
-- Arduino IDE
 
 ---
 
