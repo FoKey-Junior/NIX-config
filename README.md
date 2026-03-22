@@ -1,6 +1,6 @@
 # 🧊 NixOS Configuration
 
-![Background](https://github.com/FoKey-Junior/NIX-config/blob/main/background.png?raw=true)
+![Background](https://github.com/user-attachments/assets/5a814f6a-6279-4249-9f70-4af1dc7b6138)
 
 Мой персональный конфиг **NixOS**, ориентированный на разработку, повседневное использование и немного гейминга
 
