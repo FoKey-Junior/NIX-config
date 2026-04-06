@@ -6,12 +6,13 @@
   ];
 
   # =====================
-  # BOOTLOADER
+  # BOOTLOADER (FIXED)
   # =====================
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.timeout = 5;
 
+  # Latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # =====================
@@ -43,26 +44,22 @@
   # GRAPHICS / DISPLAY
   # =====================
   services.xserver.enable = true;
+
+  services.displayManager.sddm.enable = true;
+  services.desktopManager.plasma6.enable = true;
+
   services.xserver.xkb = {
     layout = "us";
     variant = "";
   };
 
-  services.displayManager.sddm.enable = true
-
-  # Plasma 6 включаем напрямую
-  services.desktopManager.plasma6.enable = true;
-
   services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
-    package = pkgs.nvidiaPackages.stable;
     modesetting.enable = true;
     powerManagement.enable = true;
     open = false;
   };
-
-  hardware.bluetooth.enable = true;
 
   # =====================
   # AUDIO
@@ -77,8 +74,6 @@
     pulse.enable = true;
   };
 
-  services.upower.enable = true;
-
   # =====================
   # PRINTING
   # =====================
@@ -91,7 +86,7 @@
     isNormalUser = true;
     description = "user";
     shell = pkgs.fish;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
       kdePackages.kate
     ];
@@ -108,18 +103,18 @@
   # =====================
   programs.firefox.enable = true;
   programs.fish.enable = true;
-  programs.niri.enable = true;
+  programs.hyprland.enable = true;
+  programs.ssh.startAgent = true;
   programs.throne = {
     enable = true;
     tunMode.enable = true;
   };
   programs.steam = {
     enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-    localNetworkGameTransfers.openFirewall = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
-
   virtualisation.docker.enable = true;
 
   # =====================
@@ -148,9 +143,9 @@
     gnumake
     ngrok
     docker
-    xwayland-satellite
     niri
     ncdu
+    waybar
 
     throne
     arduino-ide
@@ -169,9 +164,10 @@
     qtcreator
     dbeaver-bin
   ];
-
+  
   # =====================
   # STATE VERSION
   # =====================
   system.stateVersion = "25.11";
 }
+
