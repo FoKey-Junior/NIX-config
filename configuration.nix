@@ -13,7 +13,7 @@
   boot.loader.timeout = 5;
 
   # Latest kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages;
 
   # =====================
   # NETWORKING
