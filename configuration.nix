@@ -5,29 +5,19 @@
     ./hardware-configuration.nix
   ];
 
-  # =====================
-  # BOOTLOADER (FIXED)
-  # =====================
+  # Boot
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.timeout = 5;
-
-  # Latest kernel
   boot.kernelPackages = pkgs.linuxPackages;
 
-  # =====================
-  # NETWORKING
-  # =====================
+  # Networking
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
 
+  # Time & Locale
   time.timeZone = "Europe/Moscow";
 
-  # =====================
-  # LOCALE
-  # =====================
   i18n.defaultLocale = "en_US.UTF-8";
-
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "ru_RU.UTF-8";
     LC_IDENTIFICATION = "ru_RU.UTF-8";
@@ -40,18 +30,12 @@
     LC_TIME = "ru_RU.UTF-8";
   };
 
-  # =====================
-  # GRAPHICS / DISPLAY
-  # =====================
+  # Display / Desktop
   services.xserver.enable = true;
+  services.xserver.xkb.layout = "us";
 
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
-
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
@@ -61,9 +45,7 @@
     open = false;
   };
 
-  # =====================
-  # AUDIO
-  # =====================
+  # Audio
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
@@ -74,100 +56,82 @@
     pulse.enable = true;
   };
 
-  # =====================
-  # PRINTING
-  # =====================
+  # Printing
   services.printing.enable = true;
 
-  # =====================
-  # USERS
-  # =====================
+  # User
   users.users.user = {
     isNormalUser = true;
     description = "user";
-    shell = pkgs.fish;
     extraGroups = [ "networkmanager" "wheel" "docker" ];
+
     packages = with pkgs; [
       kdePackages.kate
     ];
   };
 
-  # =====================
-  # NIX SETTINGS
-  # =====================
-  nixpkgs.config.allowUnfree = true;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  # =====================
-  # PROGRAMS
-  # =====================
+  # Programs
   programs.firefox.enable = true;
+  programs.niri.enable = true;
   programs.fish.enable = true;
-  programs.hyprland.enable = true;
-  programs.ssh.startAgent = true;
+
+  programs.zsh = {
+    enable = true;
+    autosuggestions.enable = true;
+    syntaxHighlighting.enable = true;
+
+    shellAliases = {
+      ll = "ls -l";
+      update = "sudo nixos-rebuild switch";
+    };
+  };
+
   programs.throne = {
     enable = true;
     tunMode.enable = true;
   };
+
   programs.steam = {
     enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    localNetworkGameTransfers.openFirewall = true;
   };
+
+  # Virtualisation
   virtualisation.docker.enable = true;
 
-  # =====================
-  # SYSTEM PACKAGES
-  # =====================
-  environment.systemPackages = with pkgs; [
-    wget
-    htop
-    btop
-    fastfetch
-    ranger
-    fish
-    fuzzel
-    alacritty
-    tree
-    clang
-    cmake
-    gdb
-    python315
-    git
-    vim
-    neovim
-    openssl
-    ninja
-    nodejs_24
-    gnumake
-    ngrok
-    docker
-    niri
-    ncdu
-    waybar
+  # Packages
+  nixpkgs.config.allowUnfree = true;
 
-    throne
-    arduino-ide
-    telegram-desktop
-    ayugram-desktop
-    spotify
-    obsidian
-    jetbrains.clion
-    discord
-    vesktop
-    prismlauncher
-    code-cursor
-    vscode
-    bitwarden-desktop
-    postman
-    qtcreator
-    dbeaver-bin
+  environment.systemPackages = with pkgs; [
+    # CLI
+    wget htop btop fastfetch ranger tree ncdu unzip
+
+    # Dev
+    clang cmake gdb python315 git vim neovim openssl ninja gnumake nodejs_24
+
+    # Terminal / UI
+    fuzzel alacritty waybar gtk4 rofi
+
+    # Apps
+    arduino-ide telegram-desktop ayugram-desktop spotify obsidian
+    jetbrains.clion discord vesktop prismlauncher code-cursor vscode
+    bitwarden-desktop postman qtcreator ngrok docker
   ];
-  
-  # =====================
-  # STATE VERSION
-  # =====================
+
+  # Fonts
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+    font-awesome
+    noto-fonts
+    noto-fonts-color-emoji
+    cascadia-code
+  ];
+
+  fonts.fontconfig.defaultFonts = {
+    monospace = [ "Cascadia Code" "Noto Color Emoji" ];
+  };
+
   system.stateVersion = "25.11";
 }
-
