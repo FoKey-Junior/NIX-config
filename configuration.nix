@@ -106,18 +106,51 @@
 
   environment.systemPackages = with pkgs; [
     # CLI
-    wget htop btop fastfetch ranger tree ncdu unzip
+    wget 
+    htop 
+    btop
+    fastfetch
+    ranger
+    tree
+    ncdu
+    unzip
 
     # Dev
-    clang cmake gdb python315 git vim neovim openssl ninja gnumake nodejs_24
+    clang 
+    cmake
+    gdb
+    python315
+    git 
+    vim
+    neovim
+    openssl
+    ninja
+    gnumake
+    nodejs_24
 
     # Terminal / UI
-    fuzzel alacritty waybar gtk4 rofi
+    fuzzel
+    alacritty
+    waybar
+    gtk4
+    rofi
 
     # Apps
-    arduino-ide telegram-desktop ayugram-desktop spotify obsidian
-    jetbrains.clion discord vesktop prismlauncher code-cursor vscode
-    bitwarden-desktop postman qtcreator ngrok docker
+    arduino-ide
+    telegram-desktop
+    ayugram-desktop
+    spotify obsidian
+    jetbrains.clion
+    discord
+    vesktop
+    prismlauncher
+    code-cursor
+    vscode
+    bitwarden-desktop
+    postman
+    qtcreator
+    ngrok
+    docker
   ];
 
   # Fonts
