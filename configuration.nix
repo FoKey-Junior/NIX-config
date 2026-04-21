@@ -2,21 +2,24 @@
 
 {
   imports = [
-    ./hardware-configuration.nix
+    ./hardware-configuration.nix # автосгенерированный конфиг железа
   ];
 
-  # Boot
+  # === BOOT ===
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages;
 
-  # Networking
+  # === NIX ===
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nixpkgs.config.allowUnfree = true;
+
+  # === NETWORK / TIME ===
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
-
-  # Time & Locale
   time.timeZone = "Europe/Moscow";
 
+  # === LOCALES ===
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "ru_RU.UTF-8";
@@ -30,22 +33,29 @@
     LC_TIME = "ru_RU.UTF-8";
   };
 
-  # Display / Desktop
+  # === X11 / WAYLAND / DESKTOP ===
   services.xserver.enable = true;
-  services.xserver.xkb.layout = "us";
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
-  services.xserver.videoDrivers = [ "nvidia" ];
+  programs.niri.enable = true;
+  programs.xwayland.enable = true;
 
+  services.xserver.xkb = {
+    layout = "us";
+    variant = "";
+  };
+
+  # === NVIDIA ===
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = true;
     open = false;
   };
 
-  # Audio
+  # === AUDIO ===
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
@@ -56,27 +66,31 @@
     pulse.enable = true;
   };
 
-  # Printing
+  # === SYSTEM SERVICES ===
   services.printing.enable = true;
 
-  # User
+  # === USERS ===
   users.users.user = {
     isNormalUser = true;
     description = "user";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+    ];
 
     packages = with pkgs; [
       kdePackages.kate
     ];
   };
 
-  # Programs
-  programs.firefox.enable = true;
-  programs.niri.enable = true;
+  # === SHELLS ===
   programs.fish.enable = true;
 
   programs.zsh = {
     enable = true;
+
     autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
 
@@ -86,6 +100,9 @@
     };
   };
 
+  # === PROGRAMS ===
+  programs.firefox.enable = true;
+
   programs.throne = {
     enable = true;
     tunMode.enable = true;
@@ -93,21 +110,20 @@
 
   programs.steam = {
     enable = true;
+
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
     localNetworkGameTransfers.openFirewall = true;
   };
 
-  # Virtualisation
+  # === VIRTUALIZATION ===
   virtualisation.docker.enable = true;
 
-  # Packages
-  nixpkgs.config.allowUnfree = true;
-
+  # === PACKAGES ===
   environment.systemPackages = with pkgs; [
-    # CLI
-    wget 
-    htop 
+    # utils
+    wget
+    htop
     btop
     fastfetch
     ranger
@@ -115,45 +131,53 @@
     ncdu
     unzip
 
-    # Dev
-    clang 
+    # terminal / launcher
+    alacritty
+    fuzzel
+
+    # dev tools
+    clang
     cmake
     gdb
-    python315
-    git 
-    vim
-    neovim
-    openssl
     ninja
     gnumake
+    git
+    openssl
     nodejs_24
+    python315
 
-    # Terminal / UI
-    fuzzel
-    alacritty
-    waybar
-    gtk4
-    rofi
+    # editors / IDE
+    vim
+    neovim
+    vscode
+    code-cursor
+    jetbrains.clion
+    qtcreator
 
-    # Apps
+    # qt
+    qt6.qtbase
+    qt6.qttools
+    qt6.qtdeclarative
+    qt6Packages.qt6ct
+
+    # apps
     arduino-ide
     telegram-desktop
     ayugram-desktop
-    spotify obsidian
-    jetbrains.clion
+    spotify
+    obsidian
     discord
     vesktop
     prismlauncher
-    code-cursor
-    vscode
     bitwarden-desktop
     postman
-    qtcreator
-    ngrok
+
+    # infra
     docker
+    ngrok
   ];
 
-  # Fonts
+  # === FONTS ===
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
     font-awesome
@@ -166,5 +190,6 @@
     monospace = [ "Cascadia Code" "Noto Color Emoji" ];
   };
 
+  # === SYSTEM VERSION ===
   system.stateVersion = "25.11";
 }
