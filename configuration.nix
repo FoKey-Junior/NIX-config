@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./hardware-configuration.nix # автосгенерированный конфиг железа
+    ./hardware-configuration.nix
   ];
 
   # === BOOT ===
@@ -14,7 +14,7 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
 
-  # === NETWORK / TIME ===
+  # === SYSTEM ===
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
   time.timeZone = "Europe/Moscow";
@@ -33,9 +33,21 @@
     LC_TIME = "ru_RU.UTF-8";
   };
 
-  # === X11 / WAYLAND / DESKTOP ===
+  # === HARDWARE ===
+  hardware.nvidia = {
+    modesetting.enable = true;
+    powerManagement.enable = true;
+    open = false;
+  };
+
+  # === GRAPHICS ===
   services.xserver.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ];
+
+  services.xserver.xkb = {
+    layout = "us";
+    variant = "";
+  };
 
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
@@ -43,21 +55,8 @@
   programs.niri.enable = true;
   programs.xwayland.enable = true;
 
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
-  # === NVIDIA ===
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = true;
-    open = false;
-  };
-
   # === AUDIO ===
   services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
 
   services.pipewire = {
     enable = true;
@@ -66,7 +65,9 @@
     pulse.enable = true;
   };
 
-  # === SYSTEM SERVICES ===
+  security.rtkit.enable = true;
+
+  # === SERVICES ===
   services.printing.enable = true;
 
   # === USERS ===
@@ -121,6 +122,7 @@
 
   # === PACKAGES ===
   environment.systemPackages = with pkgs; [
+
     # utils
     wget
     htop
@@ -130,6 +132,7 @@
     tree
     ncdu
     unzip
+    libpqxx
 
     # terminal / launcher
     alacritty
@@ -187,9 +190,12 @@
   ];
 
   fonts.fontconfig.defaultFonts = {
-    monospace = [ "Cascadia Code" "Noto Color Emoji" ];
+    monospace = [
+      "Cascadia Code"
+      "Noto Color Emoji"
+    ];
   };
 
-  # === SYSTEM VERSION ===
+  # === VERSION ===
   system.stateVersion = "25.11";
 }
