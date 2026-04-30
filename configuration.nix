@@ -41,9 +41,15 @@
   };
 
   # === HARDWARE ===
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = true;
+    nvidiaSettings = true;
     open = false;
   };
 
@@ -91,6 +97,16 @@
 
     packages = with pkgs; [
       kdePackages.kate
+      arduino-ide
+      telegram-desktop
+      ayugram-desktop
+      spotify
+      obsidian
+      discord
+      vesktop
+      prismlauncher
+      bitwarden-desktop
+      postman
     ];
   };
 
@@ -170,18 +186,6 @@
     qt6.qttools
     qt6.qtdeclarative
     qt6Packages.qt6ct
-
-    # apps
-    arduino-ide
-    telegram-desktop
-    ayugram-desktop
-    spotify
-    obsidian
-    discord
-    vesktop
-    prismlauncher
-    bitwarden-desktop
-    postman
 
     # infra
     docker
