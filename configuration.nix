@@ -14,6 +14,13 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
 
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
+  nix.optimise.automatic = true;
+
   # === SYSTEM ===
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
@@ -74,6 +81,7 @@
   users.users.user = {
     isNormalUser = true;
     description = "user";
+    shell = pkgs.zsh;
 
     extraGroups = [
       "networkmanager"
