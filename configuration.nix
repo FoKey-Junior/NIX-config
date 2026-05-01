@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports = [
@@ -9,17 +9,11 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages;
+  boot.blacklistedKernelModules = ["nouveau"];
 
   # === NIX ===
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
-
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 7d";
-  };
-  nix.optimise.automatic = true;
 
   # === SYSTEM ===
   networking.hostName = "nixos";
@@ -41,15 +35,12 @@
   };
 
   # === HARDWARE ===
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
+
+  hardware.bluetooth.enable = true;
 
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = true;
-    nvidiaSettings = true;
     open = false;
   };
 
@@ -81,13 +72,14 @@
   security.rtkit.enable = true;
 
   # === SERVICES ===
+  services.upower.enable = true;
+  services.power-profiles-daemon.enable = true;
   services.printing.enable = true;
 
   # === USERS ===
   users.users.user = {
     isNormalUser = true;
     description = "user";
-    shell = pkgs.zsh;
 
     extraGroups = [
       "networkmanager"
@@ -97,17 +89,9 @@
 
     packages = with pkgs; [
       kdePackages.kate
-      arduino-ide
-      telegram-desktop
-      ayugram-desktop
-      spotify
-      obsidian
-      discord
-      vesktop
-      prismlauncher
-      bitwarden-desktop
-      postman
     ];
+
+    shell = pkgs.fish;
   };
 
   # === SHELLS ===
@@ -146,6 +130,7 @@
 
   # === PACKAGES ===
   environment.systemPackages = with pkgs; [
+    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     # utils
     wget
@@ -157,6 +142,9 @@
     ncdu
     unzip
     libpqxx
+    pciutils
+    xwayland-satellite
+    adw-gtk3
 
     # terminal / launcher
     alacritty
@@ -172,20 +160,35 @@
     openssl
     nodejs_24
     python315
+    postman
 
     # editors / IDE
     vim
     neovim
     vscode
+    antigravity
     code-cursor
     jetbrains.clion
+    jetbrains.datagrip
     qtcreator
+    arduino-ide
 
     # qt
     qt6.qtbase
     qt6.qttools
     qt6.qtdeclarative
     qt6Packages.qt6ct
+
+    # apps
+    telegram-desktop
+    ayugram-desktop
+    spotify
+    obsidian
+    discord
+    vesktop
+    prismlauncher
+    bitwarden-desktop
+    anki
 
     # infra
     docker
