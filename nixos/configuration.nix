@@ -110,7 +110,10 @@
   };
 
   # === PROGRAMS ===
-  programs.firefox.enable = true;
+  programs.dconf.enable = true;
+  programs.dconf.profiles.user.databases = [{
+    settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
+  }];
 
   programs.throne = {
     enable = true;
@@ -129,6 +132,10 @@
   virtualisation.docker.enable = true;
 
   # === PACKAGES ===
+  environment.variables = {
+    QT_QPA_PLATFORMTHEME = "qt6ct";
+  };
+
   environment.systemPackages = with pkgs; [
     inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
 
@@ -180,6 +187,7 @@
     qt6Packages.qt6ct
 
     # apps
+    firefox
     telegram-desktop
     ayugram-desktop
     spotify
@@ -189,6 +197,8 @@
     prismlauncher
     bitwarden-desktop
     anki
+    nautilus
+    eog
 
     # infra
     docker
