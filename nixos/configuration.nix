@@ -161,6 +161,7 @@
     clang
     cmake
     gdb
+    gcc
     ninja
     gnumake
     git
