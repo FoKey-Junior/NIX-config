@@ -53,8 +53,7 @@
     variant = "";
   };
 
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  services.displayManager.ly.enable = true;
 
   programs.niri.enable = true;
   programs.xwayland.enable = true;
@@ -87,9 +86,7 @@
       "docker"
     ];
 
-    packages = with pkgs; [
-      kdePackages.kate
-    ];
+    packages = with pkgs; [];
 
     shell = pkgs.fish;
   };
@@ -133,7 +130,7 @@
 
   # === PACKAGES ===
   environment.variables = {
-    QT_QPA_PLATFORMTHEME = "qt6ct";
+    QT_QPA_PLATFORMTHEME = "gtk3";
   };
 
   environment.systemPackages = with pkgs; [
@@ -151,7 +148,6 @@
     libpqxx
     pciutils
     xwayland-satellite
-    adw-gtk3
 
     # terminal / launcher
     alacritty
@@ -160,8 +156,8 @@
     # dev tools
     clang
     cmake
-    gdb
     gcc
+    gdb
     ninja
     gnumake
     git
@@ -185,7 +181,7 @@
     qt6.qtbase
     qt6.qttools
     qt6.qtdeclarative
-    qt6Packages.qt6ct
+    qt6.qtwayland
 
     # apps
     firefox
@@ -204,22 +200,54 @@
     # infra
     docker
     ngrok
+
+    # === ТЕМЫ, ИКОНКИ И КУРСОРЫ ===
+    nwg-look                  # Утилита для настройки внешнего вида
+    
+    # Темы GTK
+    adw-gtk3                  # Тема в стиле libadwaita (GNOME)
+    orchis-theme              # Популярная Material-тема
+    catppuccin-gtk            # Пастельная тема Catppuccin
+    
+    # Иконки
+    papirus-icon-theme        # Классические плоские иконки
+    fluent-icon-theme         # Иконки в стиле Windows 11
+    whitesur-icon-theme       # Иконки в стиле macOS
+    tela-icon-theme           # Минималистичные плоские иконки
+    
+    # Курсоры
+    bibata-cursors            # Отличный современный пак курсоров
+    phinger-cursors           # Еще один качественный вариант
+    apple-cursor              # Курсоры в стиле macOS
   ];
 
   # === FONTS ===
   fonts.packages = with pkgs; [
+    # Моноширинные шрифты (для терминала и IDE)
     nerd-fonts.jetbrains-mono
-    font-awesome
-    noto-fonts
-    noto-fonts-color-emoji
+    nerd-fonts.fira-code
+    nerd-fonts.ubuntu-mono
     cascadia-code
+    
+    # Системные шрифты (для интерфейса браузера, Telegram и т.д.)
+    inter
+    roboto
+    noto-fonts
+    
+    # Иконки и эмодзи
+    font-awesome
+    noto-fonts-color-emoji
   ];
 
   fonts.fontconfig.defaultFonts = {
+    serif = [ "Noto Serif" ];
+    sansSerif = [ "Inter" "Roboto" "Noto Sans" ];
     monospace = [
+      "JetBrainsMono Nerd Font"
       "Cascadia Code"
       "Noto Color Emoji"
     ];
+    emoji = [ "Noto Color Emoji" ];
   };
 
   # === VERSION ===
