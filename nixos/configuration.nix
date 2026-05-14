@@ -84,6 +84,7 @@
       "networkmanager"
       "wheel"
       "docker"
+      "dialout"
     ];
 
     packages = with pkgs; [];
@@ -136,6 +137,10 @@
   environment.systemPackages = with pkgs; [
     inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
 
+    # terminal / launcher
+    alacritty
+    fuzzel
+
     # utils
     wget
     htop
@@ -144,14 +149,18 @@
     ranger
     tree
     ncdu
-    unzip
+    dysk
     libpqxx
     pciutils
     xwayland-satellite
+    kdePackages.plasma-integration
 
-    # terminal / launcher
-    alacritty
-    fuzzel
+    # archivers
+    file-roller
+    p7zip
+    unzip
+    unrar
+    zip
 
     # dev tools
     clang
@@ -165,6 +174,7 @@
     nodejs_24
     python315
     postman
+    jdk21_headless
 
     # editors / IDE
     vim
@@ -189,6 +199,7 @@
     ayugram-desktop
     spotify
     obsidian
+    obs-studio
     discord
     vesktop
     prismlauncher
@@ -203,18 +214,18 @@
 
     # === ТЕМЫ, ИКОНКИ И КУРСОРЫ ===
     nwg-look                  # Утилита для настройки внешнего вида
-    
+
     # Темы GTK
     adw-gtk3                  # Тема в стиле libadwaita (GNOME)
     orchis-theme              # Популярная Material-тема
     catppuccin-gtk            # Пастельная тема Catppuccin
-    
+
     # Иконки
     papirus-icon-theme        # Классические плоские иконки
     fluent-icon-theme         # Иконки в стиле Windows 11
     whitesur-icon-theme       # Иконки в стиле macOS
     tela-icon-theme           # Минималистичные плоские иконки
-    
+
     # Курсоры
     bibata-cursors            # Отличный современный пак курсоров
     phinger-cursors           # Еще один качественный вариант
@@ -228,12 +239,12 @@
     nerd-fonts.fira-code
     nerd-fonts.ubuntu-mono
     cascadia-code
-    
+
     # Системные шрифты (для интерфейса браузера, Telegram и т.д.)
     inter
     roboto
     noto-fonts
-    
+
     # Иконки и эмодзи
     font-awesome
     noto-fonts-color-emoji
