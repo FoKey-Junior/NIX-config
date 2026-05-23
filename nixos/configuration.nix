@@ -153,7 +153,7 @@
     libpqxx
     pciutils
     xwayland-satellite
-    kdePackages.plasma-integration
+    kdePackages.plasma-integration   
 
     # archivers
     file-roller
@@ -214,18 +214,18 @@
 
     # === ТЕМЫ, ИКОНКИ И КУРСОРЫ ===
     nwg-look                  # Утилита для настройки внешнего вида
-
+    
     # Темы GTK
     adw-gtk3                  # Тема в стиле libadwaita (GNOME)
     orchis-theme              # Популярная Material-тема
     catppuccin-gtk            # Пастельная тема Catppuccin
-
+    
     # Иконки
     papirus-icon-theme        # Классические плоские иконки
     fluent-icon-theme         # Иконки в стиле Windows 11
     whitesur-icon-theme       # Иконки в стиле macOS
     tela-icon-theme           # Минималистичные плоские иконки
-
+    
     # Курсоры
     bibata-cursors            # Отличный современный пак курсоров
     phinger-cursors           # Еще один качественный вариант
@@ -239,12 +239,12 @@
     nerd-fonts.fira-code
     nerd-fonts.ubuntu-mono
     cascadia-code
-
+    
     # Системные шрифты (для интерфейса браузера, Telegram и т.д.)
     inter
     roboto
     noto-fonts
-
+    
     # Иконки и эмодзи
     font-awesome
     noto-fonts-color-emoji
@@ -264,4 +264,3 @@
   # === VERSION ===
   system.stateVersion = "25.11";
 }
-
