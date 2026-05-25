@@ -204,8 +204,9 @@
     vesktop
     prismlauncher
     bitwarden-desktop
-    anki
+    gnome-clocks
     nautilus
+    anki
     eog
 
     # infra
