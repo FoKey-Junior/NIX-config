@@ -150,6 +150,7 @@
     tree
     ncdu
     dysk
+    bat
     libpqxx
     pciutils
     xwayland-satellite
