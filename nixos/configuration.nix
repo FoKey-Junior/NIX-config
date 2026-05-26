@@ -205,6 +205,7 @@
     prismlauncher
     bitwarden-desktop
     gnome-clocks
+    libreoffice
     nautilus
     anki
     eog
