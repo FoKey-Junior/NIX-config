@@ -2,13 +2,13 @@
 
 ![Background](https://github.com/user-attachments/assets/5a814f6a-6279-4249-9f70-4af1dc7b6138)
 
-Мой персональный конфиг **NixOS**, ориентированный на разработку, повседневное использование и немного гейминга
+My personal **NixOS** config, tailored for development, daily use, and a bit of gaming.
 
-Система собиралась как **стабильный, но максимально свежий workstation** с KDE Plasma 6, NVIDIA и современным стеком инструментов для C++
+The system was built to be a **stable yet bleeding-edge workstation** featuring KDE Plasma 6, NVIDIA, and a modern C++ toolchain.
 
 ---
 
-## 🖥️ Основные характеристики
+## 🖥️ Core Specs
 
 - **Bootloader:** systemd-boot (UEFI)
 - **Kernel:** linuxPackages_latest
@@ -23,10 +23,10 @@
 
 ---
 
-## 🎨 Графика и окружение
+## 🎨 Graphics & Desktop Environment
 
 - KDE Plasma 6 (X11)
-- Hyprland включён как опция
+- Hyprland (included as an option)
 - NVIDIA:
   - modesetting
   - power management
@@ -34,25 +34,25 @@
 
 ---
 
-## 🔊 Аудио
+## 🔊 Audio
 
 - PipeWire
-- ALSA (включая 32-bit)
-- PulseAudio через PipeWire
-- RTKit для low-latency
+- ALSA (including 32-bit support)
+- PulseAudio via PipeWire
+- RTKit for low latency
 
 ---
 
-## 👤 Пользователь
+## 👤 User Configuration
 
-- Обычный пользователь
-- Группы: `wheel`, `networkmanager`
+- Standard user
+- Groups: `wheel`, `networkmanager`
 - Shell: **fish**
-- KDE-софт: Kate
+- KDE Software: Kate
 
 ---
 
-## 🧰 Разработка (основной фокус)
+## 🧰 Development (Main Focus)
 
 ### C / C++
 
@@ -67,14 +67,14 @@
 - rocksdb
 - crow
 
-### IDE и редакторы
+### IDEs & Editors
 
 - CLion
 - Qt Creator
 - VS Code / Cursor
 - Arduino IDE
 
-### Инструменты и языки
+### Tools & Languages
 
 - Git
 - Python 3.15
@@ -82,7 +82,7 @@
 
 ---
 
-## 🧑‍💻 CLI & Utils
+## 🧑‍💻 CLI & Utilities
 
 - htop, btop
 - neofetch, fastfetch
@@ -94,7 +94,7 @@
 
 ---
 
-## 🎮 Программы и мультимедиа
+## 🎮 Apps & Multimedia
 
 - Steam (Remote Play + LAN)
 - PrismLauncher
@@ -108,7 +108,7 @@
 
 ---
 
-## 🌐 Сеть и сервисы
+## 🌐 Network & Services
 
 - SSH Agent
 - Printing (CUPS)
