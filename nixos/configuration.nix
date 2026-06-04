@@ -140,6 +140,7 @@
     # terminal / launcher
     alacritty
     fuzzel
+    zellij
 
     # utils
     wget
@@ -181,7 +182,6 @@
     vim
     neovim
     vscode
-    antigravity
     code-cursor
     jetbrains.clion
     jetbrains.datagrip
@@ -208,6 +208,7 @@
     gnome-clocks
     libreoffice
     nautilus
+    remnote
     anki
     eog
 
