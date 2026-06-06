@@ -208,7 +208,6 @@
     gnome-clocks
     libreoffice
     nautilus
-    remnote
     anki
     eog
 
