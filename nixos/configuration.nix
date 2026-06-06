@@ -176,6 +176,7 @@
     nodejs_24
     python315
     postman
+    termius
     jdk21_headless
 
     # editors / IDE
