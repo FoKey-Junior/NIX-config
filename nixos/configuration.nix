@@ -209,6 +209,7 @@
     gnome-clocks
     libreoffice
     nautilus
+    kdePackages.dolphin
     anki
     eog
 
