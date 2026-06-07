@@ -156,6 +156,7 @@
     pciutils
     xwayland-satellite
     kdePackages.plasma-integration   
+    ffmpeg
 
     # archivers
     file-roller
