@@ -199,7 +199,6 @@
     firefox
     telegram-desktop
     ayugram-desktop
-    spotify
     obsidian
     obs-studio
     discord
