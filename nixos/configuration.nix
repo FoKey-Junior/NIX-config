@@ -212,6 +212,7 @@
     kdePackages.dolphin
     anki
     eog
+    virtualbox
 
     # infra
     docker
