@@ -128,6 +128,7 @@
 
   # === VIRTUALIZATION ===
   virtualisation.docker.enable = true;
+  users.extraGroups.vboxusers.members = ["user"];
 
   # === PACKAGES ===
   environment.variables = {
