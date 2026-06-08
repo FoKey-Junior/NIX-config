@@ -189,6 +189,7 @@
     jetbrains.datagrip
     qtcreator
     arduino-ide
+    ghidra
 
     # qt
     qt6.qtbase
