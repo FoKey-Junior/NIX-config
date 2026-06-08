@@ -128,6 +128,8 @@
 
   # === VIRTUALIZATION ===
   virtualisation.docker.enable = true;
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.enableExtensionPack = true;
   users.extraGroups.vboxusers.members = ["user"];
 
   # === PACKAGES ===
@@ -214,7 +216,6 @@
     kdePackages.dolphin
     anki
     eog
-    virtualbox
 
     # infra
     docker
