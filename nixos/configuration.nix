@@ -202,6 +202,7 @@
 
     # apps
     firefox
+    google-chrome
     telegram-desktop
     ayugram-desktop
     obsidian
