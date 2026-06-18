@@ -160,6 +160,9 @@
     xwayland-satellite
     kdePackages.plasma-integration   
     ffmpeg
+    wl-clipboard
+    cliphist
+    jq
 
     # archivers
     file-roller
