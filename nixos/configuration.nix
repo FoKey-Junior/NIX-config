@@ -195,7 +195,7 @@
     jetbrains.datagrip
     qtcreator
     arduino-ide
-    ghidra
+    radare2
 
     # qt
     qt6.qtbase
@@ -219,6 +219,7 @@
     kdePackages.dolphin
     anki
     eog
+    vlc
 
     # infra
     docker
